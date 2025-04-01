@@ -5,7 +5,7 @@ On this road are cars (represented by an array). Each cars speed can be differen
 If the array element is 5, the car is going East at a speed of 5.
 If the array elemtn is -3, the car is going West at a speed of 3.
 
-With the road only being 1 lane, these cars will crash. Write a function that will determine how many cars will remain.
+With the road only being 1 lane, these cars will crash. Write a function that will output the remaining cars.
 
 Rules:
 1. The slower of two cars (elements) is removed from the lane (array)
