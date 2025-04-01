@@ -12,6 +12,7 @@ Rules:
 2. If the cars are moving the same speed in the opposite direction, both are removed.
 3. Cars moving the same direction do not interact with one another, regardless of speed.
 4. Cars with a value of 0 do not interact with any other car.
+5. Do not change return types of functions or classes.
 
 Example Input:
 cars [3, -3, 2, -1, 1, 5, -5]
