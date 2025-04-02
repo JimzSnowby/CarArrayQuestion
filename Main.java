@@ -3,43 +3,47 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {    // Entry point
-        int[] cars = {3, -3, 2, -1, 1, 5, -5};
-        int[] result = CarCrash(cars);
-        System.out.print(Arrays.toString(result));
+        int[] cars1 = {3, -3, 2, -1, 1, 5, -5};
+        int[] cars2 = {3, -5, 4, -2, -1};
+        int[] result1 = CarCrash(cars1);
+        int[] result2 = CarCrash(cars2);
+        System.out.print(Arrays.toString(result1));
+        System.out.print(Arrays.toString(result2));
     }
 
-    public static int[] CarCrash(int[] cars)
-    {
+    public static int[] CarCrash(int[] cars) {
         ArrayList<Integer> remaining = new ArrayList<>(cars.length);
+        
+        // Always add the first car
+        remaining.add(cars[0]); 
 
-        for (int i = 1; i < cars.length; i++)
-        {
-            // Cars of 0 speed don't interact with other cars, so added by default
-            if (cars[i] != 0)
-            {
-                // Check if the cars are driving in opposite directions
-                if (Math.signum(cars[i]) != Math.signum(cars[i - 1])) 
-                {
-                    // Check if the cars are of equal speed, in which case both are destroyed
-                    if (Math.abs(cars[i]) != Math.abs(cars[i - 1]))
-                    {
-                        if (Math.abs(cars[i]) > Math.abs(cars[i - 1])) 
-                        {
-                            remaining.add(cars[i]);
-                        }
-                    } else 
-                    {
-                        // Both cars are destroyed, so we don't add either to the remaining list
-                    }
+        for (int i = 1; i < cars.length; i++) {
+            int current = cars[i];
+            
+            // If the remaining list is empty, just add the car
+            if (remaining.isEmpty()) {
+                remaining.add(current);
+                continue;
+            }
+
+            int previous = remaining.get(remaining.size() - 1);
+
+            // If they are moving in the same direction, add the car
+            if (Math.signum(current) == Math.signum(previous)) {
+                remaining.add(current);
+            } else { 
+                // Collision scenario
+                if (Math.abs(current) > Math.abs(previous)) {
+                    remaining.remove(remaining.size() - 1); // Remove the previous weaker car
+                    remaining.add(current); // Keep the stronger car
+                } else if (Math.abs(current) == Math.abs(previous)) {
+                    remaining.remove(remaining.size() - 1); // Both are destroyed
                 }
-            } else {
-                remaining.add(cars[i]);
+                // Else: if the previous car is stronger, do nothing (it stays)
             }
         }
 
-        // Convert the ArrayList back into an int array, which is the correct return type for this function
-        int[] result = remaining.stream().mapToInt(Integer::intValue).toArray();
-
-        return result;
+        // Convert to array
+        return remaining.stream().mapToInt(Integer::intValue).toArray();
     }
 }
