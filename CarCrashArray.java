@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/*Car Array Problem
+/* Car Array Problem
 
 There is a one lane road going West to East.
 On this road are cars (represented by an array). Each cars speed can be different (represented by the absolute int value) and can be going in different directions (represented by + or -), for example:
