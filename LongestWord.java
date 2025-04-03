@@ -16,8 +16,13 @@ Output: love
 public class LongestWord {
     public static void main(String[] args) {
         System.out.println(FindLongestWord("fun&!! time")); // Should return "time"
-        System.out.println(FindLongestWord("I love! dogs09")); // Should return "love"
-        System.out.println(FindLongestWord("The early%$ bird1123 catches#! the worm")); // Should return "catches"
+        System.out.println(FindLongestWord("I Love! dogs09")); // Should return "love"
+        System.out.println(FindLongestWord("The early%$ bird1123 Catches#! the worm")); // Should return "catches"
+
+        // Using the alternative method
+        System.out.println(AltWay("fun&!! time")); // Should return "time"
+        System.out.println(AltWay("I Love! dogs09")); // Should return "love"
+        System.out.println(AltWay("The early%$ bird1123 Catches#! the worm")); // Should return "catches"
     }
 
     public static String FindLongestWord(String sen) {
@@ -65,4 +70,23 @@ public class LongestWord {
 
         return sb.toString();
     }
+
+
+    public static String AltWay(String sen) {
+        // Split the array, ignoring numbers and punctuation
+        String[] senArray = sen.split("[^A-Za-z]");
+        int longestIndex = 0;
+        String longestWord = "";
+        
+        // loop over the split array, checking if the current word is longer
+        for (int i = 0; i < senArray.length; i++) {
+            if (senArray[i].length() > longestIndex) {
+                longestWord = senArray[i];
+                longestIndex = senArray[i].length();
+            }
+        }
+        return longestWord;
+    }
 }
+
+
