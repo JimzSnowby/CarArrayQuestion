@@ -17,4 +17,4 @@ Rules:
 Example Input:
 cars [3, -3, 2, -1, 1, 5, -5]
 Example Output:
-[2]
+[2, 1]
