@@ -71,7 +71,7 @@ public class LongestWord {
         return sb.toString();
     }
 
-
+    // Alternative, cleaner method with better readability
     public static String AltWay(String sen) {
         // Split the array, ignoring numbers and punctuation
         String[] senArray = sen.split("[^A-Za-z]");
