@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) {    // Entry point
+    public static void main(String[] args) {
         int[] cars1 = {3, -3, 2, -1, 1, 5, -5};
         int[] cars2 = {3, -5, 4, -2, -1};
         int[] result1 = CarCrash(cars1);
@@ -20,7 +20,7 @@ public class Main {
         for (int i = 1; i < cars.length; i++) {
             int current = cars[i];
             
-            // If the remaining list is empty, just add the car
+            // Prevents out of bounds exception
             if (remaining.isEmpty()) {
                 remaining.add(current);
                 continue;
@@ -32,18 +32,18 @@ public class Main {
             if (Math.signum(current) == Math.signum(previous)) {
                 remaining.add(current);
             } else { 
-                // Collision scenario
+                // Different direction leads to collision
                 if (Math.abs(current) > Math.abs(previous)) {
-                    remaining.remove(remaining.size() - 1); // Remove the previous weaker car
-                    remaining.add(current); // Keep the stronger car
+                    remaining.remove(remaining.size() - 1); // Remove the previous slower car
+                    remaining.add(current); // Keep the faster car
                 } else if (Math.abs(current) == Math.abs(previous)) {
-                    remaining.remove(remaining.size() - 1); // Both are destroyed
+                    remaining.remove(remaining.size() - 1); // Both are destroyed if same speed
                 }
                 // Else: if the previous car is stronger, do nothing (it stays)
             }
         }
 
-        // Convert to array
+        // Convert to array for correct return type
         return remaining.stream().mapToInt(Integer::intValue).toArray();
     }
 }
