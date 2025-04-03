@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /* Longest Word
 Write a function that takes a String parameter and return the longest word in the string.
